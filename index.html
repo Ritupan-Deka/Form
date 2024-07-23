@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form Submit to Google Sheet</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <h1>HTML Form Submit to Google Sheet</h1>
+        <br>
+        <div>
+            <div class="card-body">
+                <form name="submit-to-google-sheet">
+                    <div class="mb-3">
+                        <input name="fullname" type="text" class="form-control" placeholder="Fullname" required>
+                    </div>
+                    <div class="mb-3">
+                        <input name="email" type="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzjVp2MJG5zosjVuQxahhVirBS1YLGrrXIrYScmfm71K-1xakHYs43Yqh8q-wg9IW9u/exec'; // Replace 'Your URL will be here' with the URL of your Google Apps Script
+        const form = document.forms['submit-to-google-sheet'];
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message));
+        });
+    </script>
+</body>
+
+</html>
