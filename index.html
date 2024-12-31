@@ -4,40 +4,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Form Submit to Google Sheet</title>
+    <title>Form</title>
     <link href="styles.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        body.dark-mode {
+            background-image: url('background-dark.jpg');
+        }
+    </style>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function createFamilyMemberFields() {
+            const familyMembersContainer = document.getElementById('family-members-container');
+            familyMembersContainer.innerHTML = '';
+            const numberOfFamilyMembers = document.getElementById('number-of-family-members').value;
+
+            for (let i = 1; i <= numberOfFamilyMembers; i++) {
+                const memberDiv = document.createElement('div');
+                memberDiv.classList.add('family-member');
+
+                memberDiv.innerHTML = `
+                    <h3>Family Member ${i}</h3>
+                    <div class="mb-3">
+                        <input name="family_member_${i}_name" type="text" class="form-control" placeholder="Family Member ${i} Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <input name="family_member_${i}_age" type="number" class="form-control" placeholder="Family Member ${i} Age" required>
+                    </div>
+                    <div class="mb-3">
+                        <select name="family_member_${i}_gender" class="form-control" required>
+                            <option value="" disabled selected>Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <input name="family_member_${i}_relationship" type="text" class="form-control" placeholder="Family Member ${i} Relationship" required>
+                    </div>
+                    <div class="mb-3">
+                        <input name="family_member_${i}_education" type="text" class="form-control" placeholder="Family Member ${i} Education" required>
+                    </div>
+                    <div class="mb-3">
+                        <input name="family_member_${i}_work_life" type="text" class="form-control" placeholder="Family Member ${i} Work Life" required>
+                    </div>
+                    <div class="mb-3">
+                        <select name="family_member_${i}_marriage_status" class="form-control" required>
+                            <option value="" disabled selected>Select Marriage Status</option>
+                            <option value="single">Single</option>
+                            <option value="married">Married</option>
+                            <option value="divorced">Divorced</option>
+                            <option value="widowed">Widowed</option>
+                        </select>
+                    </div>
+                `;
+
+                familyMembersContainer.appendChild(memberDiv);
+            }
+        }
+    </script>
 </head>
 
 <body>
+    <button class="toggle-btn" onclick="toggleDarkMode()">Switch Mode</button>
     <div class="container">
-        <br>
-        <h1>HTML Form Submit to Google Sheet</h1>
-        <br>
-        <div>
-            <div class="card-body">
-                <form name="submit-to-google-sheet">
-                    <div class="mb-3">
-                        <input name="fullname" type="text" class="form-control" placeholder="Fullname" required>
-                    </div>
-                    <div class="mb-3">
-                        <input name="email" type="email" class="form-control" placeholder="Email" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
-                </form>
-            </div>
+        <h1>Form</h1>
+        <div class="card-body">
+            <form name="submit-to-google-sheet">
+                <h2>Personal Information</h2>
+                <div class="mb-3">
+                    <input name="fullname" type="text" class="form-control" placeholder="Full Name" required>
+                </div>
+                <div class="mb-3">
+                    <input name="age" type="number" class="form-control" placeholder="Age" required>
+                </div>
+                <div class="mb-3">
+                    <select name="gender" class="form-control" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <input name="email" type="email" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                    <input name="phone" type="tel" class="form-control" placeholder="Phone Number" required>
+                </div>
+                <div class="mb-3">
+                    <input name="dob" type="date" class="form-control" placeholder="Date of Birth" required>
+                </div>
+                <div class="mb-3">
+                    <input name="address" type="text" class="form-control" placeholder="Address" required>
+                </div>
+                <div class="mb-3">
+                    <input name="education" type="text" class="form-control" placeholder="Education" required>
+                </div>
+                <div class="mb-3">
+                    <input name="work_life" type="text" class="form-control" placeholder="Work Life" required>
+                </div>
+                <div class="mb-3">
+                    <select name="marriage_status" class="form-control" required>
+                        <option value="" disabled selected>Select Marriage Status</option>
+                        <option value="single">Single</option>
+                        <option value="married">Married</option>
+                        <option value="divorced">Divorced</option>
+                        <option value="widowed">Widowed</option>
+                    </select>
+                </div>
+                
+                <h2>Family Information</h2>
+                <div class="mb-3">
+                    <label for="number-of-family-members">Number of Family Members:</label>
+                    <input id="number-of-family-members" type="number" class="form-control" min="1" max="10" onchange="createFamilyMemberFields()" required>
+                </div>
+                <div id="family-members-container"></div>
+                
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
         </div>
     </div>
-
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzjVp2MJG5zosjVuQxahhVirBS1YLGrrXIrYScmfm71K-1xakHYs43Yqh8q-wg9IW9u/exec'; // Replace 'Your URL will be here' with the URL of your Google Apps Script
-        const form = document.forms['submit-to-google-sheet'];
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => console.log('Success!', response))
-                .catch(error => console.error('Error!', error.message));
-        });
-    </script>
 </body>
 
 </html>
