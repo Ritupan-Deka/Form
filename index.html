@@ -4,22 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>Family Information Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-    <style>
+    <!-- <style>
         body {
             background-image: url('background.jpg');
             background-size: cover;
             background-attachment: fixed;
+            transition: background-image 0.3s ease-in-out;
         }
 
         body.dark-mode {
             background-image: url('background-dark.jpg');
         }
-    </style>
+    </style> -->
     <script>
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
         }
 
         function createFamilyMemberFields() {
@@ -70,13 +73,20 @@
                 familyMembersContainer.appendChild(memberDiv);
             }
         }
+
+        // Load dark mode preference from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        });
     </script>
 </head>
 
 <body>
-    <button class="toggle-btn" onclick="toggleDarkMode()">Switch Mode</button>
+    <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Switch Mode</button>
     <div class="container">
-        <h1>Form</h1>
+        <h1>Family Information Form</h1>
         <div class="card-body">
             <form name="submit-to-google-sheet">
                 <h2>Personal Information</h2>
@@ -121,15 +131,15 @@
                         <option value="widowed">Widowed</option>
                     </select>
                 </div>
-                
+
                 <h2>Family Information</h2>
                 <div class="mb-3">
                     <label for="number-of-family-members">Number of Family Members:</label>
                     <input id="number-of-family-members" type="number" class="form-control" min="1" max="10" onchange="createFamilyMemberFields()" required>
                 </div>
                 <div id="family-members-container"></div>
-                
-                <button type="submit" class="btn btn-primary">Send</button>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>

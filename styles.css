@@ -1,5 +1,6 @@
+/* General Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #f4f4f4;
     color: #333;
     margin: 0;
@@ -12,13 +13,14 @@ body.dark-mode {
     color: #e0e0e0;
 }
 
+/* Container */
 .container {
     max-width: 800px;
     margin: 50px auto;
-    padding: 20px;
+    padding: 30px;
     background-color: #fff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
     transition: background-color 0.3s, color 0.3s;
     animation: fadeIn 1s ease-in-out;
 }
@@ -28,27 +30,47 @@ body.dark-mode .container {
     color: #e0e0e0;
 }
 
+/* Headings */
 h1, h2 {
     text-align: center;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-weight: 600;
     animation: slideIn 1s ease-in-out;
 }
 
-body.dark-mode h1, body.dark-mode h2 {
-    color: #e0e0e0;
+h1 {
+    font-size: 2.5rem;
+    color: #007bff;
 }
 
+h2 {
+    font-size: 1.8rem;
+    color: #555;
+    margin-top: 30px;
+}
+
+body.dark-mode h1, body.dark-mode h2 {
+    color: #66b2ff;
+}
+
+/* Form Controls */
 .form-control {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     box-sizing: border-box;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     animation: fadeInUp 0.5s ease-in-out;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 body.dark-mode .form-control {
@@ -57,6 +79,12 @@ body.dark-mode .form-control {
     border-color: #444;
 }
 
+body.dark-mode .form-control:focus {
+    border-color: #66b2ff;
+    box-shadow: 0 0 5px rgba(102, 178, 255, 0.5);
+}
+
+/* Buttons */
 .btn {
     display: block;
     width: 100%;
@@ -64,16 +92,17 @@ body.dark-mode .form-control {
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
     margin-top: 20px;
     animation: fadeInUp 0.5s ease-in-out;
 }
 
 .btn:hover {
     background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
 body.dark-mode .btn {
@@ -84,30 +113,41 @@ body.dark-mode .btn:hover {
     background-color: #003f7f;
 }
 
+/* Dark Mode Toggle Button */
 .toggle-btn {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 10px;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
     animation: fadeIn 1s ease-in-out;
+}
+
+.toggle-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 body.dark-mode .toggle-btn {
     background-color: #0056b3;
 }
 
+body.dark-mode .toggle-btn:hover {
+    background-color: #003f7f;
+}
+
+/* Family Member Sections */
 .family-member {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
     background-color: #f9f9f9;
     transition: background-color 0.3s, border-color 0.3s;
     animation: fadeInUp 0.5s ease-in-out;
@@ -128,6 +168,7 @@ body.dark-mode .family-member h3 {
     color: #66b2ff;
 }
 
+/* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -159,9 +200,18 @@ body.dark-mode .family-member h3 {
     }
 }
 
+/* Responsive Design */
 @media (max-width: 600px) {
     .container {
-        padding: 15px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
     }
 
     .form-control {
@@ -171,6 +221,6 @@ body.dark-mode .family-member h3 {
 
     .btn {
         padding: 10px;
-        font-size: 14px;
+        font-size: 0.9rem;
     }
 }
